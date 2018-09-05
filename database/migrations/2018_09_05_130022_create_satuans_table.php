@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFieldIdToDistributorsTabel extends Migration
+class CreateSatuansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddFieldIdToDistributorsTabel extends Migration
      */
     public function up()
     {
-        Schema::table('distributors', function(Blueprint $table){
-            $table->increments('id')->after('kode_barang');
+        Schema::create('satuan', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nama_satuan');
+            $table->timestamps();
         });
     }
 
@@ -25,6 +27,6 @@ class AddFieldIdToDistributorsTabel extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('satuan');
     }
 }

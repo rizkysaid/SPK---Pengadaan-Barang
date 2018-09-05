@@ -1,20 +1,24 @@
 Barang:
--id_barang
--kode_barang
+-id (pk)
+-kode_barang 
 -nama_barang
--id_kategori
--id_satuan
+-id_kategori (fk)
+-id_satuan (fk)
 -harga
 -biaya_simpan
 -stok
 
 pengadaan:
--id
--id_barang
+-id (pk)
+-id_barang (fk)
 -periode
 -keb_per_periode
 -hasil_eoq
 
 unit:
--id_satuan
--satuan
+-id
+-nama_satuan
+
+kategori:
+-id
+-nama_kategori

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDistributorsTable extends Migration
+class CreateKategorisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateDistributorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('distributors', function (Blueprint $table) {
-            $table->string('no_distributor')->unique();
-            $table->string('nama_distributor');
-            $table->text('alamat_distributor');
-            $table->string('telepon');
+        Schema::create('kategori', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nama_kategori');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateDistributorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('distributors');
+        Schema::dropIfExists('kategori');
     }
 }
