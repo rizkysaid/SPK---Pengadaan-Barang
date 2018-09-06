@@ -15,8 +15,15 @@ Route::get('/', function () {
     return view('layouts.master');
 });
 
+Route::resource('/kategori', 'KategoriController')->except([
+	'create', 'show'
+]);
+
+Route::resource('/satuan', 'SatuanController')->except([
+	'create', 'show'
+]);
+
 Route::resource('/barang', 'BarangController')->except([
 	'create', 'show'
 ]);
 
-Route::resource('/eoqs', 'EoqsController');
