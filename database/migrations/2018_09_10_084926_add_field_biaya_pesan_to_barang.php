@@ -13,7 +13,7 @@ class AddFieldBiayaPesanToBarang extends Migration
      */
     public function up()
     {
-        Schema::table('barang', function(Blueprint $table){
+        Schema::table('barang', function(Blueprint $table) {
             $table->integer('biaya_pesan')->nullable()->after('biaya_simpan');
         });
     }
