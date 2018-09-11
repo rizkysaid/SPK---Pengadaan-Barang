@@ -18,6 +18,7 @@ class barang extends Model
  		'id_satuan', 
  		'harga', 
  		'biaya_simpan', 
+ 		'biaya_pesan', 
  		'stok'
  	];
 
