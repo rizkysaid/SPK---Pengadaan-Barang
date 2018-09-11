@@ -33,7 +33,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-      		<form role="form" action="{{url('eoq.store')}}" method="POST">
+      		<form role="form" action="{{url('eoq/store')}}" method="POST">
 				{{csrf_field()}}
 
 	            <div class="row">
