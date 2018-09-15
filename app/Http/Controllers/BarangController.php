@@ -73,7 +73,7 @@ class BarangController extends Controller
                     ->where('barang.id', $id)
                     ->get();
 
-        $barang = barang::with('kategori')->findOrFail($id)->all();
+        $barang = barang::with('kategori')->findOrFail($id)->get();
 
         $kategori = kategori::orderBy('nama_kategori', 'ASC')->get();
         $satuan = satuan::orderBy('nama_satuan', 'ASC')->get();
