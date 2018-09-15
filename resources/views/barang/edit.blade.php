@@ -128,15 +128,17 @@
 										</div>
 										<div class="col-sm-1"></div>
 										<div class="col-sm-5">
+											
+
 											<div class="form-group row">
 												<div class="col-sm-4">
-													<label for="stok">Stok</label>	
+													<label for="biaya">Biaya Pesan</label>
 												</div>
 												<div class="col-sm-8">
-													<input type="number" name="stok" required
-														 value="{{ $barang->first()->stok }}"
-														class="form-control {{ $errors->has('stok') ? 'is-invalid':'' }}">
-													<p class="text-danger">{{ $errors->first('stok') }}</p>
+													<input type="number" name="biaya_pesan" required
+														 value="{{ $barang->first()->biaya_pesan }}"
+														class="form-control {{ $errors->has('biaya_pesan') ? 'is-invalid':'' }}">
+													<p class="text-danger">{{ $errors->first('biaya_simpan') }}</p>
 												</div>
 											</div>
 										</div>
@@ -161,10 +163,27 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-sm-6">
+										<div class="col-sm-1"></div>
+										<div class="col-sm-5">
+											<div class="form-group row">
+												<div class="col-sm-4">
+													<label for="stok">Stok</label>	
+												</div>
+												<div class="col-sm-8">
+													<input type="number" name="stok" required
+														 value="{{ $barang->first()->stok }}"
+														class="form-control {{ $errors->has('stok') ? 'is-invalid':'' }}">
+													<p class="text-danger">{{ $errors->first('stok') }}</p>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-sm-12">
 											<div class="float-sm-right">
-											<button class="btn btn-primary">Update</button>
-									</div>		
+												<button class="btn btn-primary">Update</button>
+											</div>		
 										</div>
 									</div>
 					

@@ -39,17 +39,17 @@ class BarangController extends Controller
                 'biaya_simpan' => 'required|integer',
         		'stok' => 'required|integer'
         	]);
-*/
+*/      
     	try{
     		$barang = Barang::firstOrCreate([
-    			     'kode_barang' => $request->kode
-                 ], [
-        			'nama_barang' => $request->nama,
-        			'id_kategori' => $request->kategori,
-                    'id_satuan' => $request->satuan,
-                    'harga' => $request->harga,
-                    'biaya_simpan' => $request->biaya,
-        			'stok' => $request->stok
+                'kode_barang' => $request->kode,
+                'nama_barang' => $request->nama,
+                'id_kategori' => $request->kategori,
+                'id_satuan' => $request->satuan,
+                'harga' => $request->harga,
+                'biaya_simpan' => $request->biaya,
+                'biaya_pesan' => $request->biayapes,
+                'stok' => $request->stok
     		]);
 
     		return redirect()->back()->with(['success' => $request->nama . ' telah ditambahkan !']);
@@ -91,6 +91,7 @@ class BarangController extends Controller
                 'id_satuan' => $request->satuan,
                 'harga' => $request->harga,
                 'biaya_simpan' => $request->biaya_simpan,
+                'biaya_pesan' => $request->biaya_pesan,
 	    		'stok' => $request->stok
 	    	]);
 
@@ -99,5 +100,30 @@ class BarangController extends Controller
     		return redirect()->back()->with(['error' => 'Gagal memperbaharui data ' . $barang->nama_barang . ' ! <br>
                 ' . $e->getMessage() ]);
     	}
+    }
+
+    public function getBarang(Request $request, $id) {
+        $barang = DB::table('barang')
+                    ->join('kategori', 'id_kategori', '=', 'kategori.id')
+                    ->join('satuan', 'id_satuan', '=', 'satuan.id')
+                    ->select('barang.*', 'kategori.nama_kategori', 'kategori.deskripsi', 'satuan.nama_satuan')
+                    ->where('barang.id', $id)
+                    ->get();
+
+        // return $barang = str_replace(array('[', ']'), '', htmlspecialchars(json_encode($barang), ENT_NOQUOTES));
+
+        $data = [
+            "id"                => $barang->first()->id,
+            'harga_barang'      => $barang->first()->harga,
+            'nama_barang'       => $barang->first()->nama_barang,
+            'id_kategori'       => $barang->first()->id_kategori,
+            'id_satuan'         => $barang->first()->id_satuan,
+            'harga'             => $barang->first()->harga,
+            'biaya_simpan'      => $barang->first()->biaya_simpan,
+            'biaya_pesan'       => $barang->first()->biaya_pesan,
+            'stok'              => $barang->first()->stok, 
+            'satuan'            => $barang->first()->nama_satuan 
+        ];
+        return $data;
     }
 }

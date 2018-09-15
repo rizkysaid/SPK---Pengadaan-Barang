@@ -27,3 +27,10 @@ Route::resource('/barang', 'BarangController')->except([
 	'create', 'show'
 ]);
 
+
+Route::group(['prefix' => 'eoq'], function(){
+	Route::get('/', 'EoqController@index');
+	Route::post('store', 'EoqController@store');
+	Route::get('get-barang/{id}', 'BarangController@getBarang');
+});
+

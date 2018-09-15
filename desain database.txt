@@ -1,0 +1,21 @@
+barang
+- id_barang
+- kode_barang 
+- nama_barang
+- id_kategori
+- harga
+- harga_simpan
+- stok
+
+
+pengadaan
+- id_pengadaan
+- id_barang
+- periode (int) / bulan
+- kebutuhan_per_periode
+- hasil_eoq
+- safety_stock
+- lead_time
+- rop
+- tanggal 
+

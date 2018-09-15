@@ -116,10 +116,10 @@
 										<div class="col-sm-5">
 											<div class="form-group row">
 												<div class="col-sm-4">
-													<label for="stok">Stok</label>	
+													<label for="biayaPes">Biaya Pesan</label>
 												</div>
 												<div class="col-sm-8">
-													<input type="number" name="stok" class="form-control {{ $errors->has('stok') ? 'is-invalid':'' }}" id="stok">
+													<input type="number" name="biayapes" class="form-control {{ $errors->has('biayapes') ? 'is-invalid':'' }}" id="biayaPes">
 												</div>
 											</div>
 										</div>
@@ -142,10 +142,23 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-sm-6">
+										<div class="col-sm-1"></div>
+										<div class="col-sm-5">
+											<div class="form-group row">
+												<div class="col-sm-4">
+													<label for="stok">Stok</label>	
+												</div>
+												<div class="col-sm-8">
+													<input type="number" name="stok" class="form-control {{ $errors->has('stok') ? 'is-invalid':'' }}" id="stok">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12">
 											<div class="float-sm-right">
-											<button class="btn btn-primary">Simpan</button>
-									</div>		
+												<button class="btn btn-primary">Simpan</button>
+											</div>		
 										</div>
 									</div>
 					
@@ -180,6 +193,7 @@
 											<td><b>Satuan</b></td>
 											<td><b>Harga</b></td>
 											<td><b>Biaya Simpan</b></td>
+											<td><b>Biaya Pesan</b></td>
 											<td><b>Stok</b></td>
 											<td><b>Aksi</b></td>
 										</tr>
@@ -195,6 +209,7 @@
 											<td>{{ $row->nama_satuan }}</td>
 											<td>{{ number_format($row->harga) }}</td>
 											<td>{{ number_format($row->biaya_simpan) }}</td>
+											<td>{{ number_format($row->biaya_pesan) }}</td>
 											<td>{{ $row->stok }}</td>
 											<td>
 												<form action="{{ route('barang.destroy', $row->id) }}" method="POST">
