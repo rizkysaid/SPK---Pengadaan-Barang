@@ -27,127 +27,127 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <div class="card card-default">
-          <div class="card-header">
-            <h3 class="card-title">Pilih barang</h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-      		<form role="form" action="{{url('eoq/store')}}" method="POST">
-				{{csrf_field()}}
+		<div class="row">
+			<div class="col-md-4">
+		        <div class="card card-default">
+		          <div class="card-header">
+		            <h3 class="card-title">Pilih barang</h3>
+		          </div>
+		          <!-- /.card-header -->
+		          <div class="card-body">
+		      		<form role="form" action="{{url('eoq/store')}}" method="POST">
+						{{csrf_field()}}
 
-	            <div class="row">
-					<div class="col-md-6">
-						<div class="form-group">
-						  <label>Nama barang</label>
-						  <select class="form-control barang" style="width: 100%;">
-						  	<option></option>
-						    @foreach($barang as $row)
-								<option value="{{ $row->id }}">{{ $row->nama_barang }}</option>
-							@endforeach
-						  </select>
-						</div>
-						<!-- /.form-group -->
-						<div class="form-group">
-						  <label>Periode</label>
-						  <select  id="kebperper" class="form-control" style="width: 100%;">
-							<option value="1">1 bulan</option>
-							<option value="2">2 bulan</option>
-							<option value="3">3 bulan</option>
-							<option value="4">4 bulan</option>
-							<option value="5">5 bulan</option>
-							<option value="6">6 bulan</option>
-							<option value="12">12 bulan</option>
-						  </select>
-						</div>
-						<!-- /.form-group -->
-						<div class="form-group">
-						  <label>Kebutuhan barang per periode</label>
-						  <input id="jumkeb"  type="number" name="kebper" class="form-control" placeholder="jumlah kebutuhan perperiode">
-						</div>
-						<!-- /.form-group -->
-					</div>
-	              	<!-- /.col -->
+								<div class="form-group">
+								  <label>Nama barang</label>
+								  <select class="form-control barang" style="width: 100%;">
+								  	<option></option>
+								    @foreach($barang as $row)
+										<option value="{{ $row->id }}">{{ $row->nama_barang }}</option>
+									@endforeach
+								  </select>
+								</div>
+								<!-- /.form-group -->
+								<div class="form-group">
+								  <label>Periode</label>
+								  <select  id="kebperper" class="form-control" style="width: 100%;">
+									<option value="1">1 bulan</option>
+									<option value="2">2 bulan</option>
+									<option value="3">3 bulan</option>
+									<option value="4">4 bulan</option>
+									<option value="5">5 bulan</option>
+									<option value="6">6 bulan</option>
+									<option value="12">12 bulan</option>
+								  </select>
+								</div>
+								<!-- /.form-group -->
+								<div class="form-group">
+								  <label>Kebutuhan barang per periode</label>
+								  <input id="jumkeb"  type="number" name="kebper" class="form-control" placeholder="jumlah kebutuhan perperiode">
+								</div>
+								<!-- /.form-group -->
 
-	              	<div class="col-md-6">
-						<div class="form-group">
-						  <label>Kebutuhan pengaman (%)</label>
-						  <input  type="number" name="kebpeng" class="form-control" placeholder="%">
-						</div>
-						<!-- /.form-group -->
+								<div class="form-group">
+								  <label>Kebutuhan pengaman (%)</label>
+								  <input  type="number" name="kebpeng" class="form-control" placeholder="%">
+								</div>
+								<!-- /.form-group -->
 
-						<div class="form-group">
-						  <label>Waktu tunggu pesan (hari)</label>
-						  <input id="wakpes"  type="number" name="waktu" class="form-control" placeholder="hari">
-						</div>
-						<!-- /.form-group -->
-					</div>
-	              	<!-- /.col -->
-	              	<div class="col-md-12">
-	              		<div class="float-sm-right">
-							<button type="submit" class="btn btn-primary">Simpan</button>
-						</div>	
-	              	</div>
-	              	<!-- /.col -->
-	            </div>
+								<div class="form-group">
+								  <label>Waktu tunggu pesan (hari)</label>
+								  <input id="wakpes"  type="number" name="waktu" class="form-control" placeholder="hari">
+								</div>
+								<!-- /.form-group -->
+
+								<div class="col-md-12">
+			              		<div class="float-sm-right">
+									<button type="submit" class="btn btn-primary">Simpan</button>
+								</div>	
+			              	</div>
+			        </form>
+		          </div>
+		          <!-- /.card-body -->
+		        </div>
+		        <!-- /.card -->	 				
+			</div>
+	              	<!-- /.col md-4-->
+	        <div class="col-md-8">     			
+		        <div class="card card-default">
+		          <div class="card-header">
+		            <h3 class="card-title">Hasil</h3>
+		          </div>
+		          <!-- /.card-header -->
+		          <div class="card-body">
+		            <table class="table table-striped">
+					    <tbody>
+					      <tr>
+					        <td style="width: 250px">Nama barang</td>
+					        <td id="namaBarang"></td>
+					      </tr><tr>
+					        <td>Harga barang</td>
+					        <td id="hargaBarang"></td>
+					      </tr>
+					      <tr>
+					        <td>Biaya pesan per barang</td>
+					        <td id="bipes"></td>
+					      </tr>
+					      <tr>
+					        <td>Waktu tunggu pesan</td>
+					        <td id="waktu"></td>
+					      </tr>
+					      <tr>
+					        <td>Biaya penyimpanan</td>
+					        <td id="bipeny"></td>
+					      </tr>
+					      <tr>
+					        <td>Rata-rata Kebutuhan per bulan</td>
+					        <td id="kebutuhan"></td>
+					      </tr>
+					      <tr>
+					        <td>EOQ - Economic Order Quantity</td>
+					        <td id="eoq"></td>
+					      </tr>
+					      <tr>
+					        <td>Safety Stock</td>
+					        <td id="safety"></td>
+					      </tr>
+					      <tr>
+					        <td>Re Order Point</td>
+					        <td id="rop"></td>
+					      </tr>
+					    </tbody>
+					  </table>
+		          </div>
+		          <!-- /.card-body -->
+		        </div>
+		        <!-- /.card -->	
+
+		        @slot('footer')
+
+				@endslot
+        	</div><!-- col-md-8 -->
+	    </div>
 	            <!-- /.row -->
-	        </form>
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->	 
-      </div><!-- /.container-fluid -->
-
-      <div class="container-fluid">
-        <div class="card card-default">
-          <div class="card-header">
-            <h3 class="card-title">Hasil</h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <table class="table table-striped">
-			    <tbody>
-			      <tr>
-			        <td style="width: 250px">Nama barang</td>
-			        <td id="namaBarang"></td>
-			      </tr><tr>
-			        <td>Harga barang</td>
-			        <td id="hargaBarang"></td>
-			      </tr>
-			      <tr>
-			        <td>Biaya pesan per barang</td>
-			        <td id="bipes"></td>
-			      </tr>
-			      <tr>
-			        <td>Waktu tunggu pesan</td>
-			        <td id="waktu"></td>
-			      </tr>
-			      <tr>
-			        <td>Biaya penyimpanan</td>
-			        <td id="bipeny"></td>
-			      </tr>
-			      <tr>
-			        <td>Rata-rata Kebutuhan per bulan</td>
-			        <td id="kebutuhan"></td>
-			      </tr>
-			      <tr>
-			        <td>EOQ - Economic Order Quantity</td>
-			        <td id="eoq"></td>
-			      </tr>
-			      <tr>
-			        <td>Safety Stock</td>
-			        <td id="safety"></td>
-			      </tr>
-			      <tr>
-			        <td>Re Order Point</td>
-			        <td id="rop"></td>
-			      </tr>
-			    </tbody>
-			  </table>
-          </div>
-          <!-- /.card-body -->
-        </div>
-        <!-- /.card -->	 
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
