@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.master');
-});
+Route::get('/', 'EoqController@index');
 
 Route::resource('/kategori', 'KategoriController')->except([
 	'create', 'show'
@@ -32,5 +30,9 @@ Route::group(['prefix' => 'eoq'], function(){
 	Route::get('/', 'EoqController@index');
 	Route::post('store', 'EoqController@store');
 	Route::get('get-barang/{id}', 'BarangController@getBarang');
+	Route::get('hasil_eoq', 'EoqController@hasilEOQ');
+	Route::get('edit/{id}', 'EoqController@edit');
+	Route::put('update/{id}', 'EoqController@update');
+	Route::delete('destroy/{id}', 'EoqController@destroy');
 });
 

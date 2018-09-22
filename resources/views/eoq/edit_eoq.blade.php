@@ -2,7 +2,7 @@
 @extends('layouts.master')
 
 @section('title')
-	<title>Proses Economic Order Quantity (EOQ)</title>
+	<title>Edit EOQ</title>
 @endsection
 
 @section('content')
@@ -12,12 +12,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Proses EOQ</h1>
+            <h1>Edit EOQ</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Proses EOQ</li>
+              <li class="breadcrumb-item active">Edit EOQ</li>
             </ol>
           </div>
         </div>
@@ -40,13 +40,14 @@
 		          </div>
 		          <!-- /.card-header -->
 		          <div class="card-body">
-		      		<form role="form" action="{{url('eoq/store')}}" method="POST">
+		      		<form role="form" action="{{url('eoq/update') .'/'. $eoq->first()->id}}" method="POST">
 						{{csrf_field()}}
+						<input type="hidden" name="_method" value="PUT">
 
 								<div class="form-group">
 								  <label>Nama barang</label>
 								  <select name="id_barang" class="form-control barang" style="width: 100%;">
-								  	<option></option>
+								  	<option value="{{$eoq->first()->id_barang}}">{{$eoq->first()->nama_barang}}</option>
 								    @foreach($barang as $row)
 										<option value="{{ $row->id }}">{{ $row->nama_barang }}</option>
 									@endforeach
@@ -55,12 +56,13 @@
 								<!-- /.form-group -->
 								<div class="form-group">
 								  <label>Kebutuhan barang per periode</label>
-								  <input id="jumkeb"  type="number" name="kebper" class="form-control" placeholder="jumlah kebutuhan perperiode">
+								  <input id="jumkeb"  type="number" name="kebper" class="form-control" placeholder="jumlah kebutuhan perperiode" value="{{$eoq->first()->kebutuhan}}">
 								</div>
 								<!-- /.form-group -->
 								<div class="form-group">
 								  <label>Periode</label>
 								  <select name="periode"  id="kebperper" class="form-control" style="width: 100%;">
+								  	<option value="{{$eoq->first()->periode}}">{{$eoq->first()->periode}} bulan</option>
 									<option value="1">1 bulan</option>
 									<option value="2">2 bulan</option>
 									<option value="3">3 bulan</option>
@@ -74,13 +76,13 @@
 
 								<div class="form-group">
 								  <label>Kebutuhan pengaman (%)</label>
-								  <input  type="number" name="kebpeng" class="form-control" placeholder="%">
+								  <input  type="number" name="kebpeng" class="form-control" placeholder="%" value="{{$eoq->first()->pengaman}}">
 								</div>
 								<!-- /.form-group -->
 
 								<div class="form-group">
 								  <label>Waktu tunggu pesan (hari)</label>
-								  <input id="wakpes"  type="number" name="waktu" class="form-control" placeholder="hari">
+								  <input id="wakpes"  type="number" name="waktu" class="form-control" placeholder="hari" value="{{$eoq->first()->waktu_pesan}}" autofocus="autofocus">
 								</div>
 								<!-- /.form-group -->
 
@@ -90,7 +92,7 @@
 
 								<div class="col-md-12">
 			              		<div class="float-sm-right">
-									<button type="submit" class="btn btn-primary">Simpan</button>
+									<button type="submit" class="btn btn-primary">Update</button>
 								</div>	
 			              	</div>
 			        </form>
@@ -172,7 +174,15 @@
 			proses();
 		});
 
+		$(".barang").keyup(function() {
+			proses();
+		});
+
 		$("#jumkeb").change(function() {
+			proses();
+		}); 
+
+		$("#jumkeb").keyup(function() {
 			proses();
 		}); 
 
@@ -180,7 +190,15 @@
 			proses();
 		});
 
+		$("#kebperper").keyup(function() {
+			proses();
+		});
+
 		$("#wakpes").keyup(function() {
+			proses();
+		});
+
+		$("#wakpes").change(function() {
 			proses();
 		});
 	});
